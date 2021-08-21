@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardViewWidth">180dp</dimen>
+    <dimen name="cardViewHeight">100dp</dimen>
+    <dimen name="margin_top_10">10dp</dimen>
+    <dimen name="margin_start_10">10dp</dimen>
+    <dimen name="margin_top_20">20dp</dimen>
+    <dimen name="margin_top_30">30dp</dimen>
+    <dimen name="corner_radius_30">5dp</dimen>
+    <dimen name="margin_top_40">40dp</dimen>
+    <dimen name="margin_top_50">50dp</dimen>
+    <dimen name="layout_margin_start">5dp</dimen>
+    <dimen name="textSize">16sp</dimen>
+    <dimen name="textSizeView">12sp</dimen>
+    <dimen name="badge_text_size">9sp</dimen>
+
+    <dimen name="two_dp">2dp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="five_dp">5dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="twelve_dp">12dp</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="twenty_dp">20dp</dimen>
+    <dimen name="ten_dp">10dp</dimen>
+
+    <dimen name="button_width">110dp</dimen>
+
+</resources>

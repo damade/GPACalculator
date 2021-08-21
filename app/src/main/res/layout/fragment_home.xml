@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+		tools:context=".BaseView.Home.HomeFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+		<ScrollView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/primary">
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:layout_margin="@dimen/five_dp">
+
+				<androidx.appcompat.widget.Toolbar
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:gravity="center"
+						android:background="@color/primary_dark"
+						android:padding="5dp">
+
+					<TextView
+							android:id="@+id/toolbarTitle"
+							android:layout_width="wrap_content"
+							android:layout_height="50dp"
+							android:textColor="@color/white"
+							android:text="@string/app_name"
+							android:gravity="center"
+					/>
+				</androidx.appcompat.widget.Toolbar>
+
+				<LinearLayout
+						android:id="@+id/recentLayout"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal"
+						android:layout_marginStart="@dimen/margin_start_10"
+						android:layout_marginLeft="@dimen/margin_start_10"
+						android:layout_marginTop="@dimen/margin_top_20">
+
+
+					<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="2"
+							android:layout_marginStart="@dimen/margin_start_10"
+							android:layout_marginLeft="@dimen/margin_start_10"
+							android:layout_marginTop="@dimen/margin_top_20"
+							android:text="@string/recent_calculation"
+							android:textColor="@color/white"
+							android:textSize="@dimen/textSize"
+							android:textStyle="bold" />
+
+				</LinearLayout>
+
+				<ProgressBar
+						android:id="@+id/progressBar"
+						android:layout_width="30dp"
+						android:layout_height="30dp"
+						android:layout_marginTop="100dp"
+						android:layout_gravity="center"
+						android:visibility="visible"/>
+
+
+				<LinearLayout
+						android:id="@+id/hideConstraintNoResult"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_margin="@dimen/four_dp"
+						android:visibility="gone"
+						android:orientation="vertical">
+
+
+					<ImageView
+							android:id="@+id/noReportImage"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:src="@drawable/layer_3"
+							android:layout_marginTop="20dp"
+							android:contentDescription="@string/image_content_description"/>
+
+
+					<TextView
+							android:id="@+id/noReportMessage"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/no_calc"
+							android:layout_marginTop="20dp"
+							android:textColor="@color/white"
+							android:textStyle="bold"
+							android:textAllCaps="true"
+							android:layout_gravity="center"/>
+
+					<Button
+							android:id="@+id/addCalculation"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="@drawable/round_button_red"
+							android:text="@string/add_new_calc"
+							android:layout_marginTop="20dp"
+							android:layout_marginBottom="@dimen/eight_dp"
+							android:textColor="@color/white"
+							android:textStyle="bold"
+							android:layout_gravity="center"/>
+				</LinearLayout>
+
+				<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/homeAllResultRecycler"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						app:layout_constraintVertical_bias="0.0"
+						android:visibility="gone"
+						android:layout_marginTop="@dimen/margin_top_20"
+						android:layout_marginBottom="@dimen/margin_top_20"
+						tools:listitem="@layout/result_item_layout"/>
+
+
+
+			</LinearLayout>
+
+		</ScrollView>
+		<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+				android:id="@+id/home_add_button"
+				style="@style/FloatingActionButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="8dp"
+				android:layout_marginRight="8dp"
+				android:layout_marginBottom="@dimen/eight_dp"
+				app:icon="@drawable/ic_black_add_24"
+				android:text="@string/add_calc"
+				app:backgroundTint="@color/white"
+				app:elevation="6dp"
+				app:fabSize="mini"
+				android:gravity="bottom|end"
+				android:layout_gravity="bottom|end"
+				app:pressedTranslationZ="12dp">
+		</com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

@@ -1,0 +1,50 @@
+<resources>
+	<string name="app_name">GPA-Calculator</string>
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="image_content_description">Image</string>
+	<string name="image_content">Image</string>
+
+	<string name="action_settings">Settings</string>
+	<string name="open_nav_drawer">Open navigation drawer</string>
+	<string name="close_nav_drawer">Close navigation drawer</string>
+	<string name="gpa_txt">GPA</string>
+	<string name="cgpa_txt">CGPA</string>
+	<string name="personalize_txt">Personalize</string>
+	<string name="profile_txt">My Profile</string>
+	<string name="home_txt">Home</string>
+	<string name="about_txt">About</string>
+	<string name="help_txt">Help and feedback</string>
+	<string name="done">Done</string>
+	<string name="logout_txt">Logout</string>
+	<string name="app_name_display">CGPA Calculator</string>
+	<string name="action_done">Done</string>
+	<string name="result_header_text">Your GPA is</string>
+	<string name="others_txt">Others</string>
+	<string name="details_text">My Details</string>
+	<string name="gpa_frag_cgpa_text">Your CGPA is %f</string>
+	<string name="result_total_units">Total Units</string>
+	<string name="result_grade">Grade</string>
+	<string name="result_total_gp">Total GP</string>
+	<string name="result_total_semester">Number Of Semesters</string>
+	<string name="result_btn_save">Save</string>
+	<string name="more_txt">More</string>
+	<string name="points_txt">Points</string>
+	<string name="pointstxt_display" formatted="false">Points earned : %d\nTotal points : %f</string>
+	<string name="app_desc">Cgpa calculator icon</string>
+	<string name="no_internet_text">Oops!\n No Internet connection</string>
+	<string name="try_again_text">TRY AGAIN</string>
+	<string name="profile_offline_package_head">Offline package</string>
+	<string name="profile_download_button">Download</string>
+	<string name="recent_calculation">Recent Calculation</string>
+	<string name="view_all">View All</string>
+	<string name="no_calc">No Calculation Yet</string>
+	<string name="add_new_calc">Calculate Your CGPA</string>
+	<string name="add_calc">Calculate</string>
+	<string name="add_sem">Add a Semester</string>
+	<string name="course_bch">Biochemistry</string>
+	<string name="course_mic">Microbiology</string>
+	<string name="course_ic">Industrial Chemistry</string>
+	<string name="course_comp">Computer Science</string>
+	<string name="course_pe">Physics With Electronics</string>
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav"
+            app:startDestination="@id/homeFragment">
+
+	<!-- *****************BASE VIEWS/SECTION*********************** -->
+	<!-- HOME FRAGMENT/SCREEN -->
+	<fragment
+			android:id="@+id/homeFragment"
+			android:name="com.ou.gpa_calculator.BaseView.Home.HomeFragment"
+			android:label="HomeFragment"
+			tools:layout="@layout/fragment_home">
+		<action
+				android:id="@+id/action_homeFragment_to_addCalculationFragment"
+				app:destination="@id/calculateFragment"
+				app:popUpTo="@id/homeFragment"/>
+
+		<action
+				android:id="@+id/action_homeFragment_to_viewResultFragment"
+				app:destination="@id/viewResultFragment"
+				app:popUpTo="@id/homeFragment"/>
+		<!--<action
+				android:id="@+id/action_homeFragment_to_profileFragment"
+				app:destination="@id/profileFragment"/>
+		<action android:id="@+id/action_homeFragment_to_allReportFragment"
+		        app:destination="@id/allReportFragment"
+		        app:popUpTo="@id/homeFragment"/>
+		<action android:id="@+id/action_homeFragment_to_viewReportFragment"
+		        app:destination="@id/viewReportFragment"/>
+		<action android:id="@+id/action_homeFragment_to_notificationFragment"
+		        app:destination="@id/notificationFragment"/>
+		<action android:id="@+id/action_homeFragment_to_settingsFragment"
+		        app:destination="@id/settingsFragment"/>-->
+	</fragment>
+
+
+	<!--Calculate GPA Screen-->
+	<fragment
+			android:id="@+id/calculateFragment"
+			android:name="com.ou.gpa_calculator.BaseView.Calculate.CalculateFragment"
+			android:label="CalculateFragment"
+			tools:layout="@layout/fragment_calculate">
+
+		<action android:id="@+id/action_calculateFragment_to_resultFragment"
+		        app:destination="@id/viewResultFragment"
+		        app:popUpTo="@id/homeFragment"
+		        app:popUpToInclusive="true"/>
+
+		<action
+				android:id="@+id/action_calculateFragment_to_coursePickerFragment"
+				app:destination="@id/coursePickerFragment"
+				app:popUpTo="@id/coursePickerFragment"/>
+
+	</fragment>
+
+	<!-- Course Picker -->
+	<fragment
+			android:id="@+id/coursePickerFragment"
+			android:name="com.ou.gpa_calculator.BaseView.CoursePicker.CoursePickerFragment"
+			android:label="CoursePickerFragment"
+			tools:layout="@layout/fragment_course_picker">
+	</fragment>
+
+    <!-- VIEW FRAGMENT/SCREEN -->
+    <fragment
+            android:id="@+id/viewResultFragment"
+            android:name="com.ou.gpa_calculator.BaseView.Result.ResultFragment"
+            android:label="ViewCalcResultFragment"
+            tools:layout="@layout/fragment_result">
+
+        <action android:id="@+id/action_viewReportFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/nav"
+                app:popUpToInclusive="true"/>
+
+    </fragment>
+
+</navigation>
