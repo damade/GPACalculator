@@ -13,7 +13,7 @@ import com.ou.gpa_calculator.LocalData.Model.*
 import com.ou.gpa_calculator.LocalData.StaticData.MainDataClass
 import com.ou.gpa_calculator.R
 import com.ou.gpa_calculator.Util.isNotEmptyNorNull
-import kotlinx.android.synthetic.main.calc_summary_layout.view.*
+import com.ou.gpa_calculator.Util.prepend
 import kotlinx.android.synthetic.main.each_course_form.view.*
 
 
@@ -27,11 +27,12 @@ class CoursePickerAdapter(
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var year: String = "100"
-        var semester: String = "FIRST"
-        private var courseEntered = ""
+        var semester: String = "First"
+        private var courseEntered = "BCH"
         private lateinit var listener: OnItemClickListener
         var yearCheck = false
         var semCheck = false
+        private val dataClass = MainDataClass()
 
         fun bind(course: CourseInfo, courseEntered: String, listener: OnItemClickListener) {
             this.listener = listener
@@ -203,12 +204,15 @@ class CoursePickerAdapter(
         }
 
         fun fetchInfo(): Array<CourseData> {
-            val dataClass = MainDataClass()
+
+            if (year.equals("Pick Your Level") || semester.equals("Pick A Semester")){
+                year = "100"
+                semester = "First"
+            }
 
             val results = dataClass.getCourseList(courseEntered, year, semester);
-            var courseSpinnerList = results.mapNotNull { it }.toTypedArray()
 
-            return courseSpinnerList;
+            return results.mapNotNull { it }.toTypedArray();
         }
     }
 

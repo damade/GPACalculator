@@ -75,6 +75,23 @@
                 app:popUpTo="@id/nav"
                 app:popUpToInclusive="true"/>
 
+	    <action android:id="@+id/action_viewReportFragment_to_adviceFragment"
+	            app:destination="@id/adviceFragment"
+	            app:popUpTo="@id/calculateFragment"
+	            app:popUpToInclusive="true"/>
     </fragment>
+
+	<!-- ADVISE FRAGMENT/SCREEN -->
+	<fragment
+			android:id="@+id/adviceFragment"
+			android:name="com.ou.gpa_calculator.BaseView.AdviseScreen.AdviceFragment"
+			android:label="AdviceFragment"
+			tools:layout="@layout/fragment_advice">
+
+		<action android:id="@+id/action_adviceFragment_to_homeFragment"
+		        app:destination="@id/homeFragment"
+		        app:popUpTo="@id/nav"
+		        app:popUpToInclusive="true"/>
+	</fragment>
 
 </navigation>

@@ -3,6 +3,7 @@ package com.ou.gpa_calculator.Util
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ou.gpa_calculator.LocalData.Model.FormDetails
 import com.ou.gpa_calculator.LocalData.Model.SemesterInfo
 import com.ou.gpa_calculator.LocalData.Model.SessionInfo
 
@@ -13,6 +14,9 @@ class SharedViewModel: ViewModel() {
 
     private val mutableSessionInfoToObserve : MutableLiveData<SessionInfo> = MutableLiveData()
     val sessionInfoToObserve : LiveData<SessionInfo> = mutableSessionInfoToObserve
+
+    private val mutableFormDetailsToObserve : MutableLiveData<FormDetails> = MutableLiveData()
+    val formDetailsToObserve : LiveData<FormDetails> = mutableFormDetailsToObserve
 
 
     fun updateSemesterInfo(data: SemesterInfo) {
@@ -31,12 +35,20 @@ class SharedViewModel: ViewModel() {
         mutableSessionInfoToObserve.value = data
     }
 
+    fun updateFormDetails(data: FormDetails){
+        mutableFormDetailsToObserve.value = data
+    }
+
     fun clearSemesterInfo() {
         mutableSemesterInfoToObserve.value = null
     }
 
     fun clearSessionInfo() {
         mutableSessionInfoToObserve.value = null
+    }
+
+    fun clearFormDetails() {
+        mutableFormDetailsToObserve.value = null
     }
 
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.ou.gpa_calculator.LocalData.Model.*
@@ -67,7 +68,9 @@ class ResultFragment : Fragment() {
 
     private fun setupObserver() {
         sharedViewModel.sessionInfoToObserve.observe(viewLifecycleOwner) { sessionInfo ->
-            renderInfo(sessionInfo)
+            if(sessionInfo != null){
+                renderInfo(sessionInfo)
+            }
         }
     }
 
@@ -102,5 +105,12 @@ class ResultFragment : Fragment() {
             Navigation.findNavController(v).navigate(R.id.action_viewReportFragment_to_homeFragment)
         }
 
+        //Navigation To  Advise Screen
+        go_to_advise__button.setOnClickListener { v ->
+            sharedViewModel.clearSemesterInfo()
+            sharedViewModel.clearSessionInfo()
+            val bundle = bundleOf("gpa" to results_gpa_text.text)
+            Navigation.findNavController(v).navigate(R.id.action_viewReportFragment_to_adviceFragment, bundle)
+        }
     }
 }

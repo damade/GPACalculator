@@ -11,10 +11,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.ou.gpa_calculator.Base.CoursePickerAdapter
+import com.ou.gpa_calculator.Base.CourseSelectorAdapter
 import com.ou.gpa_calculator.LocalData.Model.CourseInfo
+import com.ou.gpa_calculator.LocalData.Model.FormDetails
+import com.ou.gpa_calculator.LocalData.Model.RawCourseData
 import com.ou.gpa_calculator.LocalData.Model.SemesterInfo
+import com.ou.gpa_calculator.LocalData.StaticData.MainDataClass
 import com.ou.gpa_calculator.R
 import com.ou.gpa_calculator.Util.SharedViewModel
+import com.ou.gpa_calculator.Util.toCourseInfo
 import kotlinx.android.synthetic.main.fragment_course_picker.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,14 +34,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class CoursePickerFragment : Fragment() {
 
-    private lateinit var adapter: CoursePickerAdapter
+    private lateinit var adapter: CourseSelectorAdapter
     private var dept = ""
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       dept = arguments?.getString("course").toString()
+        dept = arguments?.getString("course").toString()
     }
 
     override fun onCreateView(
@@ -52,6 +57,7 @@ class CoursePickerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        setupObserver()
     }
 
     companion object {
@@ -60,15 +66,26 @@ class CoursePickerFragment : Fragment() {
             CoursePickerFragment()
     }
 
-    private fun setupUI() {
+    private fun setupObserver() {
+        sharedViewModel.formDetailsToObserve.observe(viewLifecycleOwner) { formDetails ->
+            if (formDetails != null) {
+                populateAdapter(formDetails)
+            }
+        }
+    }
+
+    private fun populateAdapter(formDetails: FormDetails) {
+
+        val results = MainDataClass().getCourseList(formDetails.dept, formDetails.year, formDetails.semester)
+
+        val endResult = RawCourseData(results, formDetails)
 
 
         //RecylcerView And Its Adapter
         coursePickerRecycler.layoutManager = LinearLayoutManager(requireContext())
         adapter =
-            CoursePickerAdapter(
-                dept,
-                arrayListOf(CourseInfo(null,null,null,null,-1,-1))
+            CourseSelectorAdapter(
+                endResult.toCourseInfo()
             )
         coursePickerRecycler.addItemDecoration(
             DividerItemDecoration(
@@ -77,6 +94,9 @@ class CoursePickerFragment : Fragment() {
             )
         )
         coursePickerRecycler.adapter = adapter
+    }
+
+    private fun setupUI() {
 
         //OnClickForCalculation
         select_back_arrow.setOnClickListener { v ->
@@ -85,21 +105,24 @@ class CoursePickerFragment : Fragment() {
 
         //FAB ADD FOR Adding New Semester
         done_course_picker_button.setOnClickListener { v ->
-            if(adapter.currentData().isEmpty()){
+            if (adapter.currentData().isEmpty()) {
                 Snackbar.make(v, "No Course Yet", Snackbar.LENGTH_LONG).show()
                 Navigation.findNavController(v).popBackStack()
-            }
-            else{
-                val semesterInfo = SemesterInfo( adapter.currentData())
+            } else {
+                val semesterInfo = SemesterInfo(adapter.currentData())
                 sharedViewModel.updateSemesterInfo(semesterInfo)
                 Navigation.findNavController(v).popBackStack()
-                //adapter.clearData()
             }
         }
 
-        add_course_picker_button.setOnClickListener {
+        /*add_course_picker_button.setOnClickListener {
             adapter.addData(CourseInfo(null,null,null,null,-1,-1))
-        }
+        }*/
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        sharedViewModel.clearFormDetails()
     }
 }

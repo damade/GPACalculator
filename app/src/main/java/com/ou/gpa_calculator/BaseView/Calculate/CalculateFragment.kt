@@ -1,10 +1,15 @@
 package com.ou.gpa_calculator.BaseView.Calculate
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
@@ -13,10 +18,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.ou.gpa_calculator.Base.CalcSummaryAdapter
 import com.ou.gpa_calculator.LocalData.DatabaseBuilder
 import com.ou.gpa_calculator.LocalData.DatabaseHelperImpl
+import com.ou.gpa_calculator.LocalData.Model.FormDetails
 import com.ou.gpa_calculator.LocalData.Model.SemesterInfo
 import com.ou.gpa_calculator.LocalData.Model.SessionInfo
 import com.ou.gpa_calculator.LocalData.entity.Result
@@ -25,6 +32,9 @@ import com.ou.gpa_calculator.Util.SharedViewModel
 import com.ou.gpa_calculator.Util.ViewModelFactory
 import com.ou.gpa_calculator.Util.getCgpa
 import com.ou.gpa_calculator.Util.getSemesterCount
+import kotlinx.android.synthetic.main.bottom_home_layout.*
+import kotlinx.android.synthetic.main.course_filller.*
+import kotlinx.android.synthetic.main.each_course_form.view.*
 import kotlinx.android.synthetic.main.fragment_calculate.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.Dispatchers
@@ -49,14 +59,15 @@ class CalculateFragment : Fragment() {
 
     private val calculateViewModel: CalculateViewModel by lazy {
         val activity = requireActivity()
-        ViewModelProvider(activity,
+        ViewModelProvider(
+            activity,
             ViewModelFactory(DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext())))
         ).get(CalculateViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dept = arguments?.getString("course").toString()
+        //dept = arguments?.getString("course").toString()
     }
 
     override fun onCreateView(
@@ -83,16 +94,17 @@ class CalculateFragment : Fragment() {
 
     private fun setupObserver() {
         sharedViewModel.semesterInfoToObserve.observe(viewLifecycleOwner) { semesterInfo ->
-            renderList(semesterInfo)
+            if (semesterInfo != null){
+                renderList(semesterInfo)
+            }
         }
     }
 
-    private fun renderList( list : List<SemesterInfo>){
-        if(list.isEmpty()){
+    private fun renderList(list: List<SemesterInfo>) {
+        if (list.isEmpty()) {
             calculateHideConstraintNoResult.visibility = View.VISIBLE
             Toast.makeText(requireContext(), "Something Went Wrong!!!", Toast.LENGTH_SHORT).show()
-        }
-        else{
+        } else {
             calculateHideConstraintNoResult.visibility = View.GONE
             summaryCgpaRecycler.visibility = View.VISIBLE
             adapter.addData(list)
@@ -107,7 +119,7 @@ class CalculateFragment : Fragment() {
         //RecylcerView And Its Adapter
         summaryCgpaRecycler.layoutManager = LinearLayoutManager(requireContext())
         adapter =
-           CalcSummaryAdapter(
+            CalcSummaryAdapter(
                 arrayListOf()
             )
         summaryCgpaRecycler.addItemDecoration(
@@ -120,30 +132,162 @@ class CalculateFragment : Fragment() {
 
         //OnClickForCalculation
         done_cgpa_button.setOnClickListener { v ->
-            if (adapter.currentData().isEmpty()){
-                Snackbar.make(v, "The List Is Empty, Add A Semester Course.",
-                    Snackbar.LENGTH_LONG).show()
-            }
-            else{
+            if (adapter.currentData().isEmpty()) {
+                Snackbar.make(
+                    v, "The List Is Empty, Add A Semester Course.",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
                 val sessionInfo = SessionInfo(adapter.currentData())
-                calculateViewModel.saveResults(Result( sessionInfo.getCgpa(), sessionInfo.getSemesterCount(), Date()))
-                //val bundle = bundleOf("cgpa" to sessionInfo.getCgpa().toString())
+                calculateViewModel.saveResults(Result(sessionInfo.getCgpa(), sessionInfo.getSemesterCount(), Date()))
                 sharedViewModel.updateSessionInfo(sessionInfo)
                 Navigation.findNavController(v).navigate(R.id.action_calculateFragment_to_resultFragment)
             }
         }
 
-        //Button To Add A New Semester
-        calculateHideConstraintNoResult.setOnClickListener { v ->
-            val bundle = bundleOf("course" to dept)
-            Navigation.findNavController(v).navigate(R.id.action_calculateFragment_to_coursePickerFragment, bundle)
-        }
-
         //FAB ADD FOR Adding New Semester
         add_semester_button.setOnClickListener { v ->
-            val bundle = bundleOf("course" to dept)
-            Navigation.findNavController(v).navigate(R.id.action_calculateFragment_to_coursePickerFragment, bundle)
+            showBottomSheetDialog()
         }
 
+        //Button To Add A New Semester
+        buttonNoResult.setOnClickListener { v ->
+            showBottomSheetDialog()
+        }
+    }
+
+    /*private fun showBottomSheetDialog() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        bottomSheetDialog.setContentView(R.layout.bottom_home_layout)
+
+        bottomSheetDialog.cardViewCalcBch.setOnClickListener {
+            val bundle = bundleOf("course" to "BCH")
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.cardViewCalcComp.setOnClickListener {
+            val bundle = bundleOf("course" to "COMP")
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.cardViewCalcIc.setOnClickListener {
+            val bundle = bundleOf("course" to "IC")
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.cardViewCalcMic.setOnClickListener {
+            val bundle = bundleOf("course" to "MIC")
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.cardViewCalcPe.setOnClickListener {
+            val bundle = bundleOf("course" to "PE")
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog.show()
+    }*/
+
+    private fun showBottomSheetDialog() {
+        var dept = "BCH"
+        var year = "100"
+        var semester = "First"
+
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        bottomSheetDialog.setContentView(R.layout.course_filller)
+
+        bottomSheetDialog.context.let {
+            ArrayAdapter(
+                it,
+                android.R.layout.simple_dropdown_item_1line,
+                arrayListOf(
+                    "Biochemistry",
+                    "Physics With Electronics",
+                    "Microbiology",
+                    "Computer Science",
+                    "Industrial Chemistry"
+                )
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                bottomSheetDialog.pc_dept_spinner.adapter = adapter
+            }
+
+            ArrayAdapter(
+                it,
+                android.R.layout.simple_dropdown_item_1line,
+                arrayListOf("100", "200", "300", "400")
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                bottomSheetDialog.pc_year_spinner.adapter = adapter
+            }
+
+            ArrayAdapter(
+                it,
+                android.R.layout.simple_dropdown_item_1line,
+                arrayListOf("First", "Second")
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                bottomSheetDialog.pc_sem_spinner.adapter = adapter
+            }
+        }
+
+
+        bottomSheetDialog.pc_dept_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                (view as TextView).setTextColor(Color.BLACK)
+                view.gravity = Gravity.CENTER
+                val text: String = parent.getItemAtPosition(pos).toString()
+                when (text) {
+                    "Biochemistry" -> dept = "BCH"
+                    "Physics With Electronics" -> dept = "PE"
+                    "Microbiology" -> dept = "MIC"
+                    "Computer Science" -> dept = "COMP"
+                    "Industrial Chemistry" -> dept = "IC"
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        bottomSheetDialog.pc_year_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                (view as TextView).setTextColor(Color.BLACK)
+                view.gravity = Gravity.CENTER
+                val text: String = parent.getItemAtPosition(pos).toString()
+                year = text
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        bottomSheetDialog.pc_sem_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                (view as TextView).setTextColor(Color.BLACK)
+                view.gravity = Gravity.CENTER
+                val text: String = parent.getItemAtPosition(pos).toString()
+                semester = text
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        bottomSheetDialog.pc_done.setOnClickListener {
+            sharedViewModel.updateFormDetails(FormDetails(dept, year, semester))
+            view?.let { its -> Navigation.findNavController(its).navigate(R.id.action_calculateFragment_to_coursePickerFragment)  }
+            bottomSheetDialog.dismiss()
+        }
+
+
+        bottomSheetDialog.show()
     }
 }

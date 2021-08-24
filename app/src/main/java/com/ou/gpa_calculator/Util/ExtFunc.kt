@@ -1,12 +1,24 @@
 package com.ou.gpa_calculator.Util
 
 import com.ou.gpa_calculator.LocalData.Model.CourseInfo
+import com.ou.gpa_calculator.LocalData.Model.RawCourseData
 import com.ou.gpa_calculator.LocalData.Model.SemesterInfo
 import com.ou.gpa_calculator.LocalData.Model.SessionInfo
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.util.ArrayList
 import kotlin.math.pow
 import kotlin.math.roundToInt
+
+    fun RawCourseData.toCourseInfo(): ArrayList<CourseInfo>{
+        var initData = ArrayList<CourseInfo>()
+        for (datum in data){
+            val courseInfo = CourseInfo(formDetails.year,formDetails.semester,datum.courseCode,
+                                        datum.courseTitle,datum.courseNoOfUnit,0)
+            initData.add(courseInfo)
+        }
+        return initData
+    }
 
     fun SessionInfo.getCgpa(): Double{
         var unitCount = 0.0
@@ -71,4 +83,8 @@ import kotlin.math.roundToInt
     fun Double.roundTo(numFractionDigits: Int): Double {
         val factor = 10.0.pow(numFractionDigits.toDouble())
         return (this * factor).roundToInt() / factor
+    }
+
+    fun <T> MutableList<T>.prepend(element: T) {
+        add(0, element)
     }

@@ -21,6 +21,23 @@ public class MainDataClass {
         BchDataClass dataClassBch = new BchDataClass();
         mainDataDict.put(StaticVariables.Biochemistry, dataClassBch.getBchDataDict());
 
+        //IC
+        IcDataClass dataClassIc= new IcDataClass();
+        mainDataDict.put(StaticVariables.IndustrialChem, dataClassIc.getIchDataDict());
+
+        //MIC
+        MicDataClass dataClassMic= new MicDataClass();
+        mainDataDict.put(StaticVariables.Microbiology, dataClassMic.getMicDataDict());
+
+        //PHY
+        PhyDataClass dataClassPhy= new PhyDataClass();
+        mainDataDict.put(StaticVariables.PhysicsElect, dataClassPhy.getPhyDataDict());
+
+
+        //COMP
+        CompDataClass dataClassComp= new CompDataClass();
+        mainDataDict.put(StaticVariables.CS, dataClassComp.getCompDataDict());
+
 
     }
 

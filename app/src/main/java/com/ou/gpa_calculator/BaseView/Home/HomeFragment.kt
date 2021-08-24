@@ -110,51 +110,17 @@ class HomeFragment : Fragment() {
 
         //OnClickForNewCalculation
         addCalculation.setOnClickListener { v ->
-            showBottomSheetDialog()
+            Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_addCalculationFragment)
         }
 
         //FAB ADD FOR NEW CALCULATION
         home_add_button.setOnClickListener { v ->
-            showBottomSheetDialog()
+            Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_addCalculationFragment)
         }
 
     }
 
-    private fun showBottomSheetDialog() {
-        val bottomSheetDialog = BottomSheetDialog(requireContext())
-        bottomSheetDialog.setContentView(R.layout.bottom_home_layout)
 
-       bottomSheetDialog.cardViewCalcBch.setOnClickListener {
-            val bundle = bundleOf("course" to "BCH")
-           view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
-            bottomSheetDialog.dismiss()
-        }
-
-       bottomSheetDialog.cardViewCalcComp.setOnClickListener {
-            val bundle = bundleOf("course" to "COMP")
-           view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
-            bottomSheetDialog.dismiss()
-        }
-
-       bottomSheetDialog.cardViewCalcIc.setOnClickListener {
-            val bundle = bundleOf("course" to "IC")
-           view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
-            bottomSheetDialog.dismiss()
-        }
-
-       bottomSheetDialog.cardViewCalcMic.setOnClickListener {
-                val bundle = bundleOf("course" to "MIC")
-           view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
-                bottomSheetDialog.dismiss()
-        }
-
-        bottomSheetDialog.cardViewCalcPe.setOnClickListener {
-            val bundle = bundleOf("course" to "PE")
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_homeFragment_to_addCalculationFragment, bundle) }
-            bottomSheetDialog.dismiss()
-        }
-        bottomSheetDialog.show()
-    }
 
     companion object {
         @JvmStatic
