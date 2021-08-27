@@ -57,6 +57,7 @@ public class MicDataClass {
         list.add(new CourseData("CHM 103","GENERAL INORGANIC CHEMISTRY I",2));
         list.add(new CourseData("CHM 107","EXPERIMENTAL CHEMISTRY I",1));
         list.add(new CourseData("CSC 101","INTRODUCTION TO COMPUTER SCIENCE",3));
+        list.add(new CourseData("MTH 101","ELEMENTARY MATHEMATICS I",3));
         list.add(new CourseData("PHY 101","GENERAL PHYSICS",3));
         list.add(new CourseData("PHY 107","EXPERIMENTAL PHYSICS I",1));
         list.add(new CourseData("GST 101","USE OF ENGLISH",2));

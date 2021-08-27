@@ -59,6 +59,7 @@ public class BchDataClass {
         list.add(new CourseData("CHM 103", "GENERAL INORGANIC CHEMISTRY I", 2));
         list.add(new CourseData("CHM 107", "EXPERIMENTAL CHEMISTRY I", 1));
         list.add(new CourseData("CSC 101", "INTRODUCTION TO COMPUTER SCIENCE", 3));
+        list.add(new CourseData("MTH 101", "ELEMENTARY MATHEMATICS I", 3));
         list.add(new CourseData("PHY 101", "GENERAL PHYSICS", 3));
         list.add(new CourseData("PHY 107", "EXPERIMENTAL PHYSICS I", 1));
         list.add(new CourseData("GST 101", "USE OF ENGLISH", 2));
@@ -100,7 +101,7 @@ public class BchDataClass {
 
         list.add(new CourseData("BCH 201", "INTRODUCTION TO PHYSICAL BIOCHEMISTRY", 3));
         list.add(new CourseData("BCH 203", "INTRODUCTION TO CELLULAR BIOCHEMISTRY", 2));
-        list.add(new CourseData("BCH 211", "GENERAL BIOCHEMISRY LAB I", 1));
+        list.add(new CourseData("BCH 211", "GENERAL BIOCHEMISTRY LAB I", 1));
         list.add(new CourseData("BIO 201", "INTRODUCTORY GENETICS", 2));
         list.add(new CourseData("CHM 211", "ORGANIC CHEMISTRY II", 2));
         list.add(new CourseData("MCB 201", "GENERAL MICROBIOLOGY I", 3));
@@ -130,7 +131,6 @@ public class BchDataClass {
         list.add(new CourseData("BCH 312", "PRINCIPLES OF ENDOCRINOLOGY", 3));
         list.add(new CourseData("BCH 314", "GENERAL BIOCHEMISTRY LAB IV", 1));
         list.add(new CourseData("CHM 302", "INORGANIC CHEMISTRY III", 3));
-        list.add(new CourseData("ENG 003", "COMMUNICATION IN ENGLISH III", 0));
 
 
         return list;
@@ -139,11 +139,15 @@ public class BchDataClass {
     private ArrayList<CourseData> tlFirstSemesterCourse() {
         ArrayList<CourseData> list = new ArrayList<>();
 
-        list.add(new CourseData("PHY 302", "ANALYTICAL MECHANICS II", 3));
-        list.add(new CourseData("PHY 304", "ELECTROMAGNETIC WAVES", 3));
-        list.add(new CourseData("PHY 306", "RESEARCH METHODS", 2));
-        list.add(new CourseData("PHY 308", "ELECTRONICS WORKSHOP PRACTICE II", 2));
-        list.add(new CourseData("PHY 312", "STATISTICAL PHYSICS", 3));
+        list.add(new CourseData("BCH 301", "INTRODUCTION TO ENZYMOLOGY", 3));
+        list.add(new CourseData("BCH 303", "CHEMISTRY AND METABOLISM OF CARBOHYDRATES", 3));
+        list.add(new CourseData("BCH 305", "CHEMISTRY AND METABOLISM OF AMINOACIDS AND PROTEIN", 2));
+        list.add(new CourseData("BCH 307", "MEMBRANE BIOCHEMISTRY", 3));
+        list.add(new CourseData("BCH 309", "FUNCTIONAL BIOCHEMISTRY", 3));
+        list.add(new CourseData("BCH 311", "GENERAL BIOCHEMISTRY II", 1));
+        list.add(new CourseData("GST 303", "PEACE AND CONFLICT RESOLUTION", 2));
+        list.add(new CourseData("GST 205", "INTRODUCTION TO SOCIOLOGY", 2));
+        list.add(new CourseData("ENG 003", "COMMUNICATION IN ENGLISH", 0));
 
 
         return list;
@@ -186,7 +190,7 @@ public class BchDataClass {
         list.add(new CourseData("BCH 411", "INDUSTRIAL BIOCHEMISTRY", 1));
         list.add(new CourseData("BCH 413", "BIOCHEMICAL REASONING", 1));
         list.add(new CourseData("BCH 415", "IMMUNOLOGY", 3));
-        list.add(new CourseData("BCH 417", "PROTEIN STRUCTURE AND FUNCT", 3));
+        list.add(new CourseData("BCH 417", "PROTEIN STRUCTURE AND FUNCTION", 3));
 
         return list;
     }

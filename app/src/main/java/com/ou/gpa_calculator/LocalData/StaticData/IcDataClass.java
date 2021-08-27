@@ -164,7 +164,7 @@ public class IcDataClass {
 
         list.add(new CourseData("CHM 424","COORDINATION CHEMISTRY",2));
         list.add(new CourseData("CHM 454","CORROSION CHEMISTRY",2));
-        list.add(new CourseData("CHM 454","INTRODUCTION TO MATERIAL SCIENCE",2));
+        list.add(new CourseData("CHM 456","INTRODUCTION TO MATERIAL SCIENCE",2));
         list.add(new CourseData("ICH 400","SEMINAR ICH",4));
         list.add(new CourseData("ICH 422","NUTRITIONAL CHEMISTRY",2));
         list.add(new CourseData("ICH 424","HOMOGENEOUS HETEROGENEOUS CATALYSIS",2));
@@ -185,6 +185,7 @@ public class IcDataClass {
         list.add(new CourseData("CHM 409","PERICYCLICS, HETERCYCLICS AND NATURAL PRODUCTS",3));
         list.add(new CourseData("CHM 419","ORGANIC SYNTHESIS",2));
         list.add(new CourseData("CHM 427","NATURAL PRODUCT CHEMISTRY",2));
+        list.add(new CourseData("ICH 328","INDUSTRIAL TRAINING",2));
         list.add(new CourseData("ICH 400","SEMINAR",3));
         list.add(new CourseData("ICH 401","QUALITY CONTROL AND ASSURANCE",2));
         list.add(new CourseData("ICH 411","DETERGENTS AND COSMETIC CHEMISTRY",2));

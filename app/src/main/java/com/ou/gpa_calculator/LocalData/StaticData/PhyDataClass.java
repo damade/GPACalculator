@@ -57,11 +57,11 @@ public class PhyDataClass {
         list.add(new CourseData("BIO 101","GENERAL BIOLOGY I",3));
         list.add(new CourseData("BIO 107","EXPERIMENTAL BIOLOGY I",1));
         list.add(new CourseData("CHM 101","GENERAL PHYSICAL CHEMISTRY I",3));
-        list.add(new CourseData("CHM 103","GENERAL INORGANIC CHEMISTRY I",2));
         list.add(new CourseData("CHM 107","EXPERIMENTAL CHEMISTRY I",1));
         list.add(new CourseData("CSC 101","INTRODUCTION TO COMPUTER SCIENCE",3));
         list.add(new CourseData("PHY 101","GENERAL PHYSICS",3));
         list.add(new CourseData("PHY 107","EXPERIMENTAL PHYSICS I",1));
+        list.add(new CourseData("STA 111","INTRODUCTION TO STATISTICS",3));
         list.add(new CourseData("GST 101","USE OF ENGLISH",2));
         list.add(new CourseData("GST 105","USE OF LIBRARY",2));
         list.add(new CourseData("ENG 001","COMMUNICATION IN ENGLISH I",0));
@@ -82,15 +82,15 @@ public class PhyDataClass {
     private ArrayList<CourseData>  slSecondSemesterCourse(){
         ArrayList<CourseData> list = new ArrayList<>();
 
-        list.add(new CourseData("BCH 202","STRUCTURE AND CHEMISTRY OF BIOMOLECULES",3));
-        list.add(new CourseData("BIO 202","INTRODUCTORY ECOLOGY",3));
-        list.add(new CourseData("BIO 234","BIOSTATISTICS II",2));
-        list.add(new CourseData("CHM 204","EXPERIMENTAL CHEMISTRY III",2));
-        list.add(new CourseData("CHM 212","INORGANIC CHEMISTRY II",2));
-        list.add(new CourseData("MCB 202","GENERAL MICROBIOLOGY II",3));
-        list.add(new CourseData("MCB 204","PRINCIPLES OF STERILIZATION AND CHEMOTHERAPY",2));
+        list.add(new CourseData("MTH 202","MATHEMATICAL METHODS II",3));
+        list.add(new CourseData("MTH 204","NUMERICAL ANALYSIS",3));
+        list.add(new CourseData("PHY 202","ELECTRICAL CIRCUITS AND BASIC ELECTRONICS",3));
+        list.add(new CourseData("PHY 204","ELECTRONIC WORKSHOP PRACTICE I",2));
+        list.add(new CourseData("PHY 206","ELEMENTARY MODERN PHYSICS II",3));
+        list.add(new CourseData("PHY 208","EXPERIMENTAL PHYSICS IV",1));
+        list.add(new CourseData("PHY 212","SOLAR AND ATMOSPHERIC PHYSICS",3));
+        list.add(new CourseData("STA 204","STATISTICS FOR PHYSICAL SCIENCES",2));
         list.add(new CourseData("GST 202","LOGIC PHILOSOPHY OF SCIENCE",2));
-        list.add(new CourseData("GST 204","HEALTH EDUCATION AND BASIC EPIDEMIOLOGY",2));
         list.add(new CourseData("ENG 002","COMMUNICATION IN ENGLISH II",0));
 
 
@@ -100,16 +100,16 @@ public class PhyDataClass {
     private ArrayList<CourseData>  slFirstSemesterCourse(){
         ArrayList<CourseData> list = new ArrayList<>();
 
-        list.add(new CourseData("MTH 202","MATHEMATICAL METHOD II",3));
-        list.add(new CourseData("MTH 204","NUMERICAL ANALYSIS I ",3));
-        list.add(new CourseData("PHY 202","ELECTRICAL CIRCUITS AND BASIC ELECTRONICS",3));
-        list.add(new CourseData("PHY 204","ELECTRONIC WORKSHOP PRACTICE I ",2));
-        list.add(new CourseData("PHY 206","ELEMENTARY MODERN PHYSICS",3));
-        list.add(new CourseData("PHY 208","EXPERIMENTAL PHYSICS IV",1));
-        list.add(new CourseData("PHY 212","SOLAR AND ATMOSPHERIC PHYSICS",3));
-        list.add(new CourseData("STA 204","STATISTICS FOR PHYSICAL SCIENCES",3));
-        list.add(new CourseData("GST 202","LOGIC PHILOSOPHY OF SCIENCE",2));
-        list.add(new CourseData("ENG 002","PHYSICS WITH ELECTRONICS",0));
+        list.add(new CourseData("CSC 201","INTRODUCTION TO COMPUTER PROGRAMMING I",3));
+        list.add(new CourseData("MTH 201","MATHEMATICAL METHODS I ",3));
+        list.add(new CourseData("MTH 211","VECTOR AND TENSOR ANALYSIS",3));
+        list.add(new CourseData("PHY 201","INTRODUCTION TO MODERN PHYSICS I ",3));
+        list.add(new CourseData("PHY 203","VIBRATION AND WAVES",3));
+        list.add(new CourseData("PHY 205","THERMAL PHYSICS",3));
+        list.add(new CourseData("PHY 207","EXPERIMENTAL PHYSICS III",1));
+        list.add(new CourseData("PHY 209","OPTICS",3));
+        list.add(new CourseData("GST 203","HISTORY AND PHILOSOPHY OF SCIENCE",2));
+
         return list;
     }
 
@@ -125,16 +125,11 @@ public class PhyDataClass {
     private ArrayList<CourseData>  tlSecondSemesterCourse(){
         ArrayList<CourseData> list = new ArrayList<>();
 
-        list.add(new CourseData("PHY 301","ANALYTICAL MECHANICS",3));
-        list.add(new CourseData("PHY 303","ELCTROMAGNETIC FIELD",3));
-        list.add(new CourseData("PHY 305","SOLID STATE PHYSICS",3));
-        list.add(new CourseData("PHY 307","EXPERIMENTAL PHYSICS V",1));
-        list.add(new CourseData("PHY 309","ENERGY AND ENVIRONMENTS",3));
-        list.add(new CourseData("PHY 311","QUANTUM PHYSICS",3));
-        list.add(new CourseData("PHY 315","ELECTRONIC DEVICES",2));
-        list.add(new CourseData("GST 303","PEACE STUDIES AND CONFLICT RESOLUTION",2));
-        list.add(new CourseData("GST 303","INTRODUCTION TO SOCIOLOGY",2));
-        list.add(new CourseData("ENG 003","COMMUNICATION IN ENGLISH III",0));
+        list.add(new CourseData("PHY 302","ANALYTICAL MECHANICS II",3));
+        list.add(new CourseData("PHY 304","ELECTROMAGNETIC WAVES",3));
+        list.add(new CourseData("PHY 306","RESEARCH METHODS",2));
+        list.add(new CourseData("PHY 308","ELECTRONICS WORKSHOP PRACTICE II",2));
+        list.add(new CourseData("PHY 312","STATISTICAL PHYSICS",3));
 
 
         return list;
@@ -143,11 +138,16 @@ public class PhyDataClass {
     private ArrayList<CourseData>  tlFirstSemesterCourse(){
         ArrayList<CourseData> list = new ArrayList<>();
 
-        list.add(new CourseData("PHY 302","ANALYTICAL MECHANICS II",3));
-        list.add(new CourseData("PHY 304","ELECTROMAGNETIC WAVES",3));
-        list.add(new CourseData("PHY 306","RESEARCH METHODS",2));
-        list.add(new CourseData("PHY 308","ELECTRONICS WORKSHOP PRACTICE II",2));
-        list.add(new CourseData("PHY 312","STATISTICAL PHYSICS",3));
+        list.add(new CourseData("PHY 301","ANALYTICAL MECHANICS",3));
+        list.add(new CourseData("PHY 303","ELCTROMAGNETIC FIELD",3));
+        list.add(new CourseData("PHY 305","SOLID STATE PHYSICS",3));
+        list.add(new CourseData("PHY 307","EXPERIMENTAL PHYSICS V",1));
+        list.add(new CourseData("PHY 309","ENERGY AND ENVIRONMENTS",3));
+        list.add(new CourseData("PHY 311","QUANTUM PHYSICS",3));
+        list.add(new CourseData("PHY 315","ELECTRONIC DEVICES",2));
+        list.add(new CourseData("GST 303","PEACE STUDIES AND CONFLICT RESOLUTION",2));
+        list.add(new CourseData("GST 305","INTRODUCTION TO SOCIOLOGY",2));
+        list.add(new CourseData("ENG 003","COMMUNICATION IN ENGLISH III",0));
 
 
         return list;
