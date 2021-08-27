@@ -17,6 +17,11 @@ class ResultAdapter (
         fun bind(result: Result) {
             itemView.item_cgpa.text = result.cgpa.roundTo(2).toString()
             itemView.item_semester.text = result.semester.toString()
+            itemView.item_show.text = (if (result.semester!! > 1) {
+                "Your CGPA is"
+            } else {
+                "Your GPA is"
+            }).toString()
         }
     }
 
