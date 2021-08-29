@@ -47,4 +47,10 @@
 	<string name="course_ic">Industrial Chemistry</string>
 	<string name="course_comp">Computer Science</string>
 	<string name="course_pe">Physics With Electronics</string>
+    <string name="enter_matric_number">Enter Matric Number</string>
+	<string name="enter_password">Enter Password</string>
+	<string name="login">Login</string>
+	<string name="are_you_a_staff">Are You A Staff?</string>
+	<string name="staff_login">Staff Login</string>
+	<string name="student_login">Student Login</string>
 </resources>
