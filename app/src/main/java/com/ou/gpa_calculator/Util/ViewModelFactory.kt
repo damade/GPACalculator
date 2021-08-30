@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ou.gpa_calculator.BaseView.Calculate.CalculateFragment
 import com.ou.gpa_calculator.BaseView.Calculate.CalculateViewModel
 import com.ou.gpa_calculator.BaseView.Home.HomeViewModel
+import com.ou.gpa_calculator.BaseView.Login.LoginViewModel
 import com.ou.gpa_calculator.LocalData.DatabaseHelper
 
 class ViewModelFactory (private val dbHelper: DatabaseHelper) :
@@ -16,6 +17,9 @@ class ViewModelFactory (private val dbHelper: DatabaseHelper) :
         }
         if (modelClass.isAssignableFrom(CalculateViewModel::class.java)) {
             return CalculateViewModel(dbHelper) as T
+        }
+        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            return LoginViewModel(dbHelper) as T
         }
 
         throw IllegalArgumentException("Unknown class name")

@@ -3,7 +3,45 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav"
-            app:startDestination="@id/homeFragment">
+            app:startDestination="@id/studentLoginFragment">
+
+
+	<!-- STUDENT LOGIN SCREEN -->
+	<fragment
+			android:id="@+id/studentLoginFragment"
+			android:name="com.ou.gpa_calculator.BaseView.Login.StudentLoginFragment"
+			android:label="StudentLoginFragment"
+			tools:layout="@layout/fragment_student_login">
+
+		<action
+				android:id="@+id/action_studentLoginFragment_to_lecturerLoginFragment"
+				app:destination="@id/lecturerLoginFragment" />
+
+		<action
+				android:id="@+id/action_studentLoginFragment_to_homeFragment"
+				app:destination="@id/homeFragment"
+				app:popUpTo="@id/nav"
+				app:popUpToInclusive="true"/>
+
+	</fragment>
+
+	<!-- LECTURER LOGIN SCREEN -->
+	<fragment
+			android:id="@+id/lecturerLoginFragment"
+			android:name="com.ou.gpa_calculator.BaseView.Login.StaffLoginFragment"
+			android:label="LecturerLoginFragment"
+			tools:layout="@layout/fragment_lecturer_login">
+		<action
+				android:id="@+id/action_lecturerLoginFragment_to_studentLoginFragment"
+				app:popUpTo="@id/studentLoginFragment"
+				app:popUpToInclusive="true"/>
+
+		<action
+				android:id="@+id/action_lecturerLoginFragment_to_homeFragment"
+				app:destination="@id/homeFragment"
+				app:popUpTo="@id/nav"
+				app:popUpToInclusive="true"/>
+	</fragment>
 
 	<!-- *****************BASE VIEWS/SECTION*********************** -->
 	<!-- HOME FRAGMENT/SCREEN -->
