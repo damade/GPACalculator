@@ -54,4 +54,11 @@
 	<string name="staff_login">Staff Login</string>
 	<string name="student_login">Student Login</string>
 	<string name="staff_name">Staff Name</string>
+    <string name="full_name">Full Name</string>
+	<string name="matric_number">Matric Number</string>
+    <string name="department">Department</string>
+	<string name="phone_number">Phone Number</string>
+	<string name="sign_up">Sign Up</string>
+	<string name="already_have_an_account">Already have an account</string>
+	<string name="sign_in">Sign In</string>
 </resources>
