@@ -8,9 +8,9 @@ import java.util.*
 
 @Entity
 data class User(@ColumnInfo(name = "userId") var userId: String,
-                @ColumnInfo(name = "password") var password: String?,
-                @ColumnInfo(name = "userType") var userType: String?,
-                @ColumnInfo(name = "date") var date: Date?
+                @ColumnInfo(name = "password") var password: String?
+//                @ColumnInfo(name = "userType") var userType: String?,
+//                @ColumnInfo(name = "date") var date: Date?
 ){
     @PrimaryKey(autoGenerate = true) var id: Int? = null
 

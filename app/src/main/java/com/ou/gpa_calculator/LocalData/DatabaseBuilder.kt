@@ -10,16 +10,28 @@ import java.util.*
 
 object DatabaseBuilder {
 
-    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor", "Student", Date()),
-                                  User("u/17/cs/0205", "williams","Student", Date()),
-                                  User("u/17/cs/0011", "olashina","Student", Date()),
-                                  User("u/17/cs/0187", "adewale","Student", Date()),
-                                  User("u/17/cs/0056", "adisa","Student", Date()),
-                                  User("u/17/cs/0131", "stone","Student", Date()),
-                                  User("u/17/cs/0067", "martins","Student", Date()),
-                                  User("u/17/cs/0126", "steven","Student", Date()),
-                                  User("Oluwatobi", "ayilara","Lecturer", Date()),
-                                  User("PrinceWill", "akpojotor","Lecturer", Date()))
+    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor"),
+                                  User("u/17/cs/0205", "williams"),
+                                  User("u/17/cs/0011", "olashina"),
+                                  User("u/17/cs/0187", "adewale"),
+                                  User("u/17/cs/0056", "adisa"),
+                                  User("u/17/cs/0131", "stone"),
+                                  User("u/17/cs/0067", "martins"),
+                                  User("u/17/cs/0126", "steven"),
+                                  User("Oluwatobi", "ayilara"),
+                                  User("PrinceWill", "akpojotor"))
+
+//    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor", "Student", Date()),
+//        User("u/17/cs/0205", "williams","Student", Date()),
+//        User("u/17/cs/0011", "olashina","Student", Date()),
+//        User("u/17/cs/0187", "adewale","Student", Date()),
+//        User("u/17/cs/0056", "adisa","Student", Date()),
+//        User("u/17/cs/0131", "stone","Student", Date()),
+//        User("u/17/cs/0067", "martins","Student", Date()),
+//        User("u/17/cs/0126", "steven","Student", Date()),
+//        User("Oluwatobi", "ayilara","Lecturer", Date()),
+//        User("PrinceWill", "akpojotor","Lecturer", Date()))
+
 
     private var INSTANCE: AppDatabase? = null
 

@@ -23,9 +23,9 @@
 	<string name="others_txt">Others</string>
 	<string name="details_text">My Details</string>
 	<string name="gpa_frag_cgpa_text">Your CGPA is %f</string>
-	<string name="result_total_units">Total Units</string>
+	<string name="result_total_units">TU</string>
 	<string name="result_grade">Grade</string>
-	<string name="result_total_gp">Total GP</string>
+	<string name="result_total_gp">TP</string>
 	<string name="result_total_semester">Number Of Semesters</string>
 	<string name="result_btn_save">Save</string>
 	<string name="more_txt">More</string>
@@ -53,4 +53,5 @@
 	<string name="are_you_a_staff">Are You A Staff?</string>
 	<string name="staff_login">Staff Login</string>
 	<string name="student_login">Student Login</string>
+	<string name="staff_name">Staff Name</string>
 </resources>

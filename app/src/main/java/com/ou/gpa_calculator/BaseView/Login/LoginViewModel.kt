@@ -4,31 +4,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ou.gpa_calculator.DataBase.UserDataRepository
+import com.ou.gpa_calculator.DataBase.UsersDataClass
 import com.ou.gpa_calculator.LocalData.DatabaseHelper
 import com.ou.gpa_calculator.LocalData.entity.Result
 import com.ou.gpa_calculator.LocalData.entity.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val userDataRepository: UserDataRepository):ViewModel() {
 
-class LoginViewModel (private val dbHelper: DatabaseHelper) : ViewModel() {
 
-    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
 
-   private val userData : MutableLiveData<User> = MutableLiveData()
+    fun insertNewUserViewModel(usersDataClass: UsersDataClass) = viewModelScope.launch {
+        userDataRepository.insertUserDataDao(usersDataClass)
+    }
 
-    val user : LiveData<User> = userData
+    fun updateUserViewModel(usersDataClass: UsersDataClass) = viewModelScope.launch {
+        userDataRepository.updateUserDataDao(usersDataClass)
+    }
 
-    fun queryIfUserExist(userIdG: String, passwordG: String, userTypeG: String) {
+    private val allUser: LiveData<List<UsersDataClass>> = userDataRepository.getAllUsers()
 
-        try {
-           val userDb =  dbHelper.getUserDetails(userIdG, passwordG, userTypeG)
-            userData.postValue(userDb)
-            Timber.tag("Inside Life").d(userData.toString())
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
+    fun getAllUsers(): LiveData<List<UsersDataClass>>{
+        return allUser
     }
 
     override fun onCleared() {

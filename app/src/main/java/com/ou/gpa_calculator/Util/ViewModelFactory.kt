@@ -18,9 +18,9 @@ class ViewModelFactory (private val dbHelper: DatabaseHelper) :
         if (modelClass.isAssignableFrom(CalculateViewModel::class.java)) {
             return CalculateViewModel(dbHelper) as T
         }
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(dbHelper) as T
-        }
+//        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+//            return LoginViewModel(dbHelper) as T
+//        }
 
         throw IllegalArgumentException("Unknown class name")
     }

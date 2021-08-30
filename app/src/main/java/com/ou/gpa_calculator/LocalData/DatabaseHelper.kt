@@ -18,8 +18,8 @@ interface DatabaseHelper {
 
     suspend fun saveUserDetails(user: User)
 
-    fun getUserDetails(userIdG: String, passwordG: String, userTypeG: String): User
+    //fun getUserDetails(userIdG: String, passwordG: String, userTypeG: String): User
 
-    suspend fun getAllUsers(): LiveData<List<User>>
+    fun getAllUsers(): LiveData<List<User>>
 
 }

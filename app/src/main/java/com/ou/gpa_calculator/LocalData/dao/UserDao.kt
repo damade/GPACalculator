@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao {
 
     @TypeConverters(TypeConverter::class)
-    @Query("SELECT * FROM user ORDER BY date DESC")
+    @Query("SELECT * FROM user")
     fun getAllUsers(): LiveData<List<User>>
 
 
@@ -28,7 +28,7 @@ interface UserDao {
     @Query("DELETE FROM user")
     suspend fun deletedAllUsers()
 
-    @Query("SELECT *  FROM user WHERE userId like :userIdG AND password like :passwordG AND userType like :userTypeG")
-    fun isLoginCorrect(userIdG: String, passwordG: String, userTypeG: String): User
+//    @Query("SELECT *  FROM user WHERE userId like :userIdG AND password like :passwordG AND userType like :userTypeG")
+//    fun isLoginCorrect(userIdG: String, passwordG: String, userTypeG: String): User
 
 }
