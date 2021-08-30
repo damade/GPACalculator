@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,6 +36,7 @@ class StudentLoginFragment: Fragment() {
 
     private lateinit var userList: List<UsersDataClass>
     private lateinit var button: Button
+    private lateinit var staffLogin: TextView
     private var userMatric: String = "u/17/cs/0123"
     private var userPassword: String = "okafor"
     private var userMatric1: String = "u/17/cs/0205"
@@ -57,6 +59,12 @@ class StudentLoginFragment: Fragment() {
         button = view.findViewById(R.id.studentLoginIn)
         matric = view.findViewById(R.id.studentLoginMatric)
         word = view.findViewById(R.id.studentLoginPassword)
+        staffLogin = view.findViewById(R.id.goToLecturerSignIn)
+
+        //Go to lecturer Signin screen.
+        staffLogin.setOnClickListener { v ->
+            Navigation.findNavController(v).navigate(R.id.action_studentLoginFragment_to_lecturerLoginFragment)
+        }
 
         //OnClickForCalculation
         button.setOnClickListener {
@@ -87,13 +95,13 @@ class StudentLoginFragment: Fragment() {
 //                    }
 //                }
 
-                //Go to lecturer Signin screen.
-                goToLecturerSignIn.setOnClickListener { v ->
-                    Navigation.findNavController(v).navigate(R.id.action_studentLoginFragment_to_lecturerLoginFragment)
-                }
+
 
             }
         }
+
+
+
 
 
         return view
