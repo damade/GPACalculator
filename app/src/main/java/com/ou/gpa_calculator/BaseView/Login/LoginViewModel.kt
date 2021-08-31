@@ -1,37 +1,62 @@
 package com.ou.gpa_calculator.BaseView.Login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.ou.gpa_calculator.DataBase.UserDataRepository
-import com.ou.gpa_calculator.DataBase.UsersDataClass
+import androidx.lifecycle.*
 import com.ou.gpa_calculator.LocalData.DatabaseHelper
 import com.ou.gpa_calculator.LocalData.entity.Result
 import com.ou.gpa_calculator.LocalData.entity.User
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 import java.util.*
-import javax.inject.Inject
-@HiltViewModel
-class LoginViewModel @Inject constructor(private val userDataRepository: UserDataRepository):ViewModel() {
 
 
+class LoginViewModel ( private val dbHelper: DatabaseHelper) : ViewModel(){
 
-    fun insertNewUserViewModel(usersDataClass: UsersDataClass) = viewModelScope.launch {
-        userDataRepository.insertUserDataDao(usersDataClass)
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
+
+    var studentQueryResults : MutableLiveData<User> = MutableLiveData()
+
+    var staffQueryResults : MutableLiveData<User> = MutableLiveData()
+
+    var savedUser: MutableLiveData<Long> = MutableLiveData()
+
+
+    fun saveStudentUser(user: User) {
+
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val isSaved = dbHelper.saveUserDetails(user)
+                Timber.tag("I got here").d(isSaved.toString())
+                savedUser.postValue(isSaved)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
+        }
     }
 
-    fun updateUserViewModel(usersDataClass: UsersDataClass) = viewModelScope.launch {
-        userDataRepository.updateUserDataDao(usersDataClass)
+    fun queryIfStudentExist(userIdG: String, passwordG: String, userTypeG: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val result = dbHelper
+                    .verifyStudentDetails(userIdG, passwordG, userTypeG)
+                studentQueryResults.postValue(result)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
+        }
     }
 
-    private val allUser: LiveData<List<UsersDataClass>> = userDataRepository.getAllUsers()
-
-    fun getAllUsers(): LiveData<List<UsersDataClass>>{
-        return allUser
+     fun queryIfStaffExist(fullNameG: String, passwordG: String, userTypeG: String){
+         viewModelScope.launch(Dispatchers.IO){
+             try {
+                 val result = dbHelper
+                     .verifyStaffDetails(fullNameG, passwordG, userTypeG)
+                staffQueryResults.postValue(result)
+             } catch (e: Exception) {
+                 Timber.e(e)
+             }
+         }
     }
 
     override fun onCleared() {

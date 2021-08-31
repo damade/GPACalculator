@@ -16,12 +16,15 @@ class DatabaseHelperImpl(private val appDatabase: AppDatabase) : DatabaseHelper 
         //For Users
     override suspend fun insertAllUsers(users: List<User>)  = appDatabase.userDao().insertAllUsers(users)
 
-    override suspend fun saveUserDetails(user: User) = appDatabase.userDao().insert(user)
+    override suspend fun saveUserDetails(user: User): Long = appDatabase.userDao().insertUser(user)
 
-//    override fun getUserDetails(userIdG: String, passwordG: String, userTypeG: String) = appDatabase
-//        .userDao().isLoginCorrect(userIdG, passwordG, userTypeG)
+    override suspend  fun verifyStudentDetails(userIdG: String, passwordG: String, userTypeG: String): User
+    = appDatabase.userDao().isStudentLoginCorrect(userIdG, passwordG, userTypeG)
 
-    override  fun getAllUsers(): LiveData<List<User>> = appDatabase.userDao().getAllUsers()
+    override suspend fun verifyStaffDetails(fullNameG: String, passwordG: String, userTypeG: String): User
+    = appDatabase.userDao().isStaffLoginCorrect(fullNameG, passwordG, userTypeG)
+
+    override suspend fun getAllUsers(): LiveData<List<User>> = appDatabase.userDao().getAllUsers()
 
 
 }

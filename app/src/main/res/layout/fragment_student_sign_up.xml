@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -162,7 +161,7 @@
                     />
 
                     <TextView
-                            android:id="@+id/signIn"
+                            android:id="@+id/signInToStudentLogin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/sign_in"
@@ -178,4 +177,3 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>

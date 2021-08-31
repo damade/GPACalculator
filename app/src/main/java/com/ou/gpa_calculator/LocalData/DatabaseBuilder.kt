@@ -10,16 +10,16 @@ import java.util.*
 
 object DatabaseBuilder {
 
-    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor"),
-                                  User("u/17/cs/0205", "williams"),
-                                  User("u/17/cs/0011", "olashina"),
-                                  User("u/17/cs/0187", "adewale"),
-                                  User("u/17/cs/0056", "adisa"),
-                                  User("u/17/cs/0131", "stone"),
-                                  User("u/17/cs/0067", "martins"),
-                                  User("u/17/cs/0126", "steven"),
-                                  User("Oluwatobi", "ayilara"),
-                                  User("PrinceWill", "akpojotor"))
+//    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor"),
+//                                  User("u/17/cs/0205", "williams"),
+//                                  User("u/17/cs/0011", "olashina"),
+//                                  User("u/17/cs/0187", "adewale"),
+//                                  User("u/17/cs/0056", "adisa"),
+//                                  User("u/17/cs/0131", "stone"),
+//                                  User("u/17/cs/0067", "martins"),
+//                                  User("u/17/cs/0126", "steven"),
+//                                  User("Oluwatobi", "ayilara"),
+//                                  User("PrinceWill", "akpojotor"))
 
 //    val PREPOPULATE_DATA = listOf(User("u/17/cs/0123", "okafor", "Student", Date()),
 //        User("u/17/cs/0205", "williams","Student", Date()),
@@ -50,7 +50,7 @@ object DatabaseBuilder {
             AppDatabase::class.java,
             "ou-cgpa-calculator"
         )
-            .addCallback(object : RoomDatabase.Callback() {
+            /*.addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     // insert the data on the IO Thread
@@ -59,6 +59,6 @@ object DatabaseBuilder {
                     }
                 }
             }
-            )
+            )*/
             .build()
 }

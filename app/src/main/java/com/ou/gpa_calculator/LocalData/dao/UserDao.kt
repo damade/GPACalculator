@@ -16,8 +16,8 @@ interface UserDao {
     fun getAllUsers(): LiveData<List<User>>
 
 
-    @Insert
-    suspend fun insert(user: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(user: User): Long
 
     @Insert
     fun insertAllUsers(users: List<User>)
@@ -28,7 +28,10 @@ interface UserDao {
     @Query("DELETE FROM user")
     suspend fun deletedAllUsers()
 
-//    @Query("SELECT *  FROM user WHERE userId like :userIdG AND password like :passwordG AND userType like :userTypeG")
-//    fun isLoginCorrect(userIdG: String, passwordG: String, userTypeG: String): User
+   @Query("SELECT *  FROM user WHERE matricNo like :userIdG AND password like :passwordG AND userType like :userTypeG")
+   fun isStudentLoginCorrect(userIdG: String, passwordG: String, userTypeG: String): User
+
+    @Query("SELECT *  FROM user WHERE fullName like :fullNameG AND password like :passwordG AND userType like :userTypeG")
+    fun isStaffLoginCorrect(fullNameG: String, passwordG: String, userTypeG: String): User
 
 }

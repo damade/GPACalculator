@@ -18,10 +18,27 @@
 				app:destination="@id/lecturerLoginFragment" />
 
 		<action
+				android:id="@+id/action_studentLoginFragment_to_studentRegisterFragment"
+				app:destination="@id/studentSignUpFragment" />
+
+		<action
 				android:id="@+id/action_studentLoginFragment_to_homeFragment"
 				app:destination="@id/homeFragment"
 				app:popUpTo="@id/nav"
 				app:popUpToInclusive="true"/>
+
+	</fragment>
+
+	<!-- STUDENT SignUp  SCREEN -->
+	<fragment
+			android:id="@+id/studentSignUpFragment"
+			android:name="com.ou.gpa_calculator.BaseView.SignUp.StudentSignUpFragment"
+			android:label="StudentSignUpFragment"
+			tools:layout="@layout/fragment_student_sign_up">
+
+		<action
+				android:id="@+id/action_studentSignUpFragment_to_studentLoginFragment"
+				app:popUpTo="@id/studentLoginFragment"/>
 
 	</fragment>
 
@@ -37,10 +54,28 @@
 				app:popUpToInclusive="true"/>
 
 		<action
+				android:id="@+id/action_lecturerLoginFragment_to_lecturerRegisterFragment"
+				app:destination="@id/lecturerSignUpFragment"/>
+
+		<action
 				android:id="@+id/action_lecturerLoginFragment_to_homeFragment"
 				app:destination="@id/homeFragment"
 				app:popUpTo="@id/nav"
 				app:popUpToInclusive="true"/>
+	</fragment>
+
+	<!-- Lecturer SignUp  SCREEN -->
+	<fragment
+			android:id="@+id/lecturerSignUpFragment"
+			android:name="com.ou.gpa_calculator.BaseView.SignUp.LecturerSignUpFragment"
+			android:label="LecturerSignUpFragment"
+			tools:layout="@layout/fragment_staff_sign_up">
+
+		<action
+				android:id="@+id/action_staffSignUpFragment_to_staffLoginFragment"
+				app:popUpTo="@id/lecturerLoginFragment"
+				app:popUpToInclusive="true"/>
+
 	</fragment>
 
 	<!-- *****************BASE VIEWS/SECTION*********************** -->

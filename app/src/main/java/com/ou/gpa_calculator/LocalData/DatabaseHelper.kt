@@ -16,10 +16,12 @@ interface DatabaseHelper {
 
     suspend fun insertAllUsers(users: List<User>)
 
-    suspend fun saveUserDetails(user: User)
+    suspend fun saveUserDetails(user: User): Long
 
-    //fun getUserDetails(userIdG: String, passwordG: String, userTypeG: String): User
+    suspend fun verifyStudentDetails(userIdG: String, passwordG: String, userTypeG: String): User
 
-    fun getAllUsers(): LiveData<List<User>>
+    suspend fun verifyStaffDetails(fullNameG: String, passwordG: String, userTypeG: String): User
+
+    suspend fun getAllUsers(): LiveData<List<User>>
 
 }
