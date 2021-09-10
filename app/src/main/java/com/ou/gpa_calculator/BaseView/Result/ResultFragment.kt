@@ -108,7 +108,6 @@ class ResultFragment : Fragment() {
         //Navigation To  Advise Screen
         go_to_advise__button.setOnClickListener { v ->
             sharedViewModel.clearSemesterInfo()
-            sharedViewModel.clearSessionInfo()
             val bundle = bundleOf("gpa" to results_gpa_text.text)
             Navigation.findNavController(v).navigate(R.id.action_viewReportFragment_to_adviceFragment, bundle)
         }

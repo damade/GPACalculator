@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.ou.gpa_calculator.LocalData.Model.SessionInfo
 import com.ou.gpa_calculator.R
+import com.ou.gpa_calculator.Util.SharedViewModel
+import com.ou.gpa_calculator.Util.getAdvice
 import com.ou.gpa_calculator.Util.getCgpa
 import com.ou.gpa_calculator.Util.roundTo
 import kotlinx.android.synthetic.main.fragment_advice.*
@@ -25,6 +29,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AdviceFragment : Fragment() {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private var gpa = ""
 
@@ -47,6 +53,7 @@ class AdviceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        setupObserver()
     }
 
     companion object {
@@ -64,11 +71,23 @@ class AdviceFragment : Fragment() {
             AdviceFragment()
     }
 
+    private fun setupObserver() {
+        sharedViewModel.sessionInfoToObserve.observe(viewLifecycleOwner) { sessionInfo ->
+            if(sessionInfo != null){
+                renderInfo(sessionInfo)
+            }
+        }
+    }
+
+    private fun renderInfo(sessionInfo: SessionInfo) {
+        advise_text.text = sessionInfo.getAdvice()
+    }
+
     private fun setupUI() {
 
         val score = gpa.toDoubleOrNull()
 
-        if (score != null) {
+        /*if (score != null) {
             when (score) {
                 in 4.5..5.0 -> advise_text.text = "You are right on track"
                 in 3.50..4.49 -> {
@@ -93,10 +112,11 @@ class AdviceFragment : Fragment() {
                 }
                 else -> advise_text.text = "You are very far from any good grade, you really need to consider your options"
             }
-        }
+        }*/
 
         //Navigation To Home Screen
         okay_button.setOnClickListener { v ->
+            sharedViewModel.clearSessionInfo()
             Navigation.findNavController(v).navigate(R.id.action_adviceFragment_to_homeFragment)
         }
 
